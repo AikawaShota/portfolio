@@ -1,0 +1,19 @@
+services:
+  app:
+    container_name: app
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ./portfolio-vite
+        target: /usr/src/app
+      # コンテナ側のnode_modulesがホスト側のnode_modulesで上書きされるのを防ぐ。(volume trick)
+      - type: volume
+        source: node_modules
+        target: /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  node_modules:
