@@ -1,10 +1,12 @@
-export default function Profile() {
+import { forwardRef } from 'react';
+
+const Profile = forwardRef(function Profile(props, ref) {
     const handleRedirect = (url) => {
         window.open(url, '_blank');
     }
 
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div ref={ref} className="hero bg-base-200 min-h-screen" >
             <div className="hero-content flex-col lg:flex-row">
                 <img
                     src="/images/ID_photo.JPG"
@@ -38,4 +40,6 @@ export default function Profile() {
             </div>
         </div >
     )
-}
+});
+
+export default Profile;

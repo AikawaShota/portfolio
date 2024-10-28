@@ -1,7 +1,9 @@
 // React
 import { useRef, useEffect, useState } from 'react';
 
-export default function GlobalNav() {
+import PropTypes from 'prop-types';
+
+export default function GlobalNav({ profileRef }) {
     const [isVisible, setIsVisible] = useState(false);
     const globalNavRef = useRef(null);
 
@@ -51,6 +53,10 @@ export default function GlobalNav() {
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm0-80h640v-440H160v440Zm240-520h160v-80H400v80ZM160-200v-440 440Z" /></svg>
     )
 
+    const scrollToSection = (ref) => {
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     return (
         <div ref={globalNavRef} style={globalNavStyle} className="navbar bg-base-100 sticky top-0 z-10">
             <div className="navbar-start">
@@ -72,7 +78,7 @@ export default function GlobalNav() {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-40 p-2 shadow">
-                        <li><a>{personIcon}Profile</a></li>
+                        <li onClick={() => scrollToSection(profileRef)}><a>{personIcon}Profile</a></li>
                         <li><a>{bagIcon}Portfolio</a></li>
                         <li><a>{mailIcon}Contact</a></li>
                         <li><a>{openInNewIcon}Blog</a></li>
@@ -82,7 +88,7 @@ export default function GlobalNav() {
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>{personIcon}Profile</a></li>
+                    <li onClick={() => scrollToSection(profileRef)}><a>{personIcon}Profile</a></li>
                     <li><a>{bagIcon}Portfolio</a></li>
                     <li><a>{mailIcon}Contact</a></li>
                     <li><a>{openInNewIcon}Blog</a></li>
@@ -92,3 +98,9 @@ export default function GlobalNav() {
 
     )
 }
+
+GlobalNav.propTypes = {
+    profileRef: PropTypes.shape({
+        current: PropTypes.instanceOf(Element)
+    }),
+};
