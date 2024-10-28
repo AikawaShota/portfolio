@@ -1,13 +1,17 @@
 import 'destyle.css/destyle.min.css';
 import './App.css';
-import Header from './components/Header.jsx';
+import PortfolioIntro from './components/PortfolioIntro.jsx';
+import GlobalNav from './components/GlobalNav.jsx'
+import Profile from './components/Profile.jsx'
 
 function App() {
-  return (
-    <>
-      <Header />
-    </>
-  )
+    return (
+        <>
+            <PortfolioIntro />
+            <GlobalNav />
+            <Profile />
+        </>
+    )
 }
 
 export default App
