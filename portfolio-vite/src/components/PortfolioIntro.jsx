@@ -6,19 +6,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 
-
-export default function Header() {
-    return (
-        <header>
-            <div>
-                <PortfolioIntro />
-            </div>
-        </header>
-    )
-}
-
-
-function PortfolioIntro() {
+export default function PortfolioIntro() {
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -123,7 +111,7 @@ function PortfolioIntro() {
             container.appendChild(renderer.domElement);
 
             controls = new OrbitControls(camera, renderer.domElement);
-            controls.enabled = true;
+            controls.rotateSpeed = 0.3;
             controls.enableZoom = false;
             controls.target.set(0, 0, 400);
             controls.update();
@@ -171,5 +159,9 @@ function PortfolioIntro() {
         };
     }, []);
 
-    return <div ref={containerRef} />;
+    return (
+        <header className='animate-fade h-screen'>
+            <div ref={containerRef} />
+        </header>
+    );
 }
