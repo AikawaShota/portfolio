@@ -1,8 +1,8 @@
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 
 const Profile = forwardRef(function Profile(props, ref) {
     const handleRedirect = (url) => {
-        window.open(url, '_blank');
+        window.open(url, "_blank");
     }
 
     return (
@@ -11,7 +11,7 @@ const Profile = forwardRef(function Profile(props, ref) {
                 <img
                     src="/images/ID_photo.JPG"
                     className="max-w-sm rounded-3xl shadow-2xl" />
-                <div className='max-w-lg'>
+                <div className="max-w-lg">
                     <h1 className="text-5xl font-bold">Profile</h1>
                     <p className="py-6 leading-loose">
                         Webアプリ開発を学ぶ学生です。
@@ -21,17 +21,17 @@ const Profile = forwardRef(function Profile(props, ref) {
                     </p>
                     <div className="flex justify-between max-w-56">
                         <button
-                            onClick={() => handleRedirect('https://mesekit.com/')}
+                            onClick={() => handleRedirect("https://mesekit.com/")}
                             className="btn btn-outline">
                             Blog
                         </button>
                         <button
-                            onClick={() => handleRedirect('https://github.com/AikawaShota/')}
+                            onClick={() => handleRedirect("https://github.com/AikawaShota/")}
                             className="btn btn-outline">
                             GitHub
                         </button>
                         <button
-                            onClick={() => handleRedirect('https://x.com/aikawa_shota')}
+                            onClick={() => handleRedirect("https://x.com/aikawa_shota")}
                             className="btn btn-outline">
                             𝕏
                         </button>

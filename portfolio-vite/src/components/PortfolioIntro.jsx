@@ -1,10 +1,10 @@
 // React
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect } from "react";
 // Three.js
-import * as THREE from 'three';
+import * as THREE from "three";
 
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { FontLoader } from "three/addons/loaders/FontLoader.js";
 
 export default function PortfolioIntro() {
     const containerRef = useRef(null);
@@ -25,7 +25,7 @@ export default function PortfolioIntro() {
             scene.background = new THREE.Color(0xffffff);
 
             const loader = new FontLoader();
-            loader.load('fonts/Ubuntu_Regular.json', function (font) {
+            loader.load("fonts/Ubuntu_Regular.json", function (font) {
 
                 const color = 0x000000;
 
@@ -116,9 +116,9 @@ export default function PortfolioIntro() {
             controls.target.set(0, 0, 400);
             controls.update();
 
-            controls.addEventListener('change', render);
+            controls.addEventListener("change", render);
 
-            window.addEventListener('resize', onWindowResize);
+            window.addEventListener("resize", onWindowResize);
 
             onWindowResize(); // canvasサイズが縦スクロールバーのwidthだけ大きくなるため、onWindowResizeで調整。
         } // end init
@@ -151,8 +151,8 @@ export default function PortfolioIntro() {
         // cleanup
         return () => {
             cancelAnimationFrame(animationId);
-            window.removeEventListener('resize', onWindowResize);
-            controls.removeEventListener('change', render);
+            window.removeEventListener("resize", onWindowResize);
+            controls.removeEventListener("change", render);
             if (container) {
                 container.removeChild(renderer.domElement);
             }
@@ -160,7 +160,7 @@ export default function PortfolioIntro() {
     }, []);
 
     return (
-        <header className='animate-fade h-screen'>
+        <header className="animate-fade h-screen">
             <div ref={containerRef} />
         </header>
     );

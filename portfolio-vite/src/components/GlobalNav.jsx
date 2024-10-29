@@ -1,7 +1,7 @@
 // React
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function GlobalNav({ profileRef }) {
     const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +33,7 @@ export default function GlobalNav({ profileRef }) {
     // CSS
     const globalNavStyle = {
         opacity: isVisible ? 1 : 0,
-        transition: 'opacity 1s ease',
+        transition: "opacity 1s ease",
     }
 
     // SVG
@@ -54,7 +54,7 @@ export default function GlobalNav({ profileRef }) {
     )
 
     const scrollToSection = (ref) => {
-        ref.current.scrollIntoView({ behavior: 'smooth' });
+        ref.current.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
