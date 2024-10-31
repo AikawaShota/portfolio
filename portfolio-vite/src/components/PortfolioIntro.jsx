@@ -160,8 +160,9 @@ export default function PortfolioIntro() {
     }, []);
 
     return (
-        <header className="animate-fade h-screen">
+        <header className="animate-fade h-screen cursor-grab">
             <div ref={containerRef} />
+            <div className="scrolldown2"><span>Scroll</span></div>
         </header>
     );
 }
