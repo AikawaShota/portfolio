@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import PropTypes from "prop-types";
 
 export default function SkillSet() {
     const pythonRef = useRef(null);
@@ -44,3 +45,14 @@ function SkillProgress({ skillRef, title, percent, text, gitHubLink = "#", gitHu
         </>
     )
 }
+
+SkillProgress.propTypes = {
+    skillRef: PropTypes.shape({
+        current: PropTypes.instanceOf(Element)
+    }),
+    title: PropTypes.string,
+    percent: PropTypes.number,
+    text: PropTypes.string,
+    gitHubLink: PropTypes.string,
+    gitHubTitle: PropTypes.string,
+};
