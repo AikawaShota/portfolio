@@ -1,0 +1,24 @@
+.rating-star {
+    border-radius: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    transition: background-color 0.25s ease;
+}
+
+.highlighted-star {
+    background-color: #000000;
+}
+
+.faded-star {
+    background-color: #CCCCCC;
+}
+
+button.btn-outline:hover {
+    .highlighted-star {
+        background-color: #ffffff;
+    }
+
+    .faded-star {
+        background-color: #636363;
+    }
+}

@@ -22,7 +22,7 @@ export default function PortfolioIntro() {
             camera.position.set(0, 0, 750);
 
             scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xffffff);
+            scene.background = new THREE.Color(0xf9fafb);
 
             const loader = new FontLoader();
             loader.load("fonts/Ubuntu_Regular.json", function (font) {
@@ -160,9 +160,8 @@ export default function PortfolioIntro() {
     }, []);
 
     return (
-        <header className="animate-fade h-screen cursor-grab">
+        <header className="animate-fade h-screen cursor-grab active:cursor-grabbing">
             <div ref={containerRef} />
-            <div className="scrolldown2"><span>Scroll</span></div>
         </header>
     );
 }

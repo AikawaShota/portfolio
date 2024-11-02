@@ -58,7 +58,7 @@ export default function GlobalNav({ profileRef }) {
     }
 
     return (
-        <div ref={globalNavRef} style={globalNavStyle} className="navbar bg-base-100 sticky top-0 z-10">
+        <nav ref={globalNavRef} style={globalNavStyle} className="navbar bg-gray-50 sticky top-0 z-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -94,8 +94,7 @@ export default function GlobalNav({ profileRef }) {
                     <li><a>{openInNewIcon}Blog</a></li>
                 </ul>
             </div>
-        </div>
-
+        </nav>
     )
 }
 

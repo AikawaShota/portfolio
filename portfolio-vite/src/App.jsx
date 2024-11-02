@@ -11,9 +11,11 @@ function App() {
 
     return (
         <>
-            <PortfolioIntro />
+            <header>
+                <PortfolioIntro />
+            </header>
+            <GlobalNav profileRef={profileRef} />
             <main>
-                <GlobalNav profileRef={profileRef} />
                 <Profile ref={profileRef} />
                 <SkillSet />
             </main>

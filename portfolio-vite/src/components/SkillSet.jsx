@@ -1,40 +1,69 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
+import "./skillItem.css";
 
 export default function SkillSet() {
     const pythonRef = useRef(null);
     const python = {
         skillRef: pythonRef,
         title: "Python",
-        percent: 20,
+        rating: 1,
         text: "私が得意な言語です。",
         gitHubTitle: "植物管理アプリ",
         gitHubLink: "https://github.com/AikawaShota/garden-management",
     }
 
+    const javaRef = useRef(null);
+    const java = {
+        skillRef: javaRef,
+        title: "Java",
+        rating: 1,
+        text: "私が得意な言語です。",
+        gitHubTitle: "植物管理アプリ",
+        gitHubLink: "https://github.com/AikawaShota/garden-management",
+    }
+
+
+    const javascriptRef = useRef(null);
+    const javascript = {
+        skillRef: javascriptRef,
+        title: "JavaScript",
+        rating: 1,
+        text: "このサイトで主に使われている言語です。",
+        gitHubTitle: "植物管理アプリ",
+        gitHubLink: "https://github.com/AikawaShota/garden-management",
+    }
+
     return (
-        <div className="container">
-            <SkillProgress {...python} />
+        <div className="hero bg-gray-50 min-h-screen">
+            <div className="hero-content">
+                <h2 className="font-bold text-3xl">Language</h2>
+                <div className="grid grid-rows-2 grid-flow-col">
+                    < SkillItem {...python} />
+                    < SkillItem {...java} />
+                    < SkillItem {...javascript} />
+                </div>
+            </div>
         </div>
     )
 }
 
-function SkillProgress({ skillRef, title, percent, text, gitHubLink = "#", gitHubTitle = "N/A" }) {
+function SkillItem({ skillRef, title, rating, text, gitHubLink = "#", gitHubTitle = "N/A" }) {
 
     return (
-        <>
+        <div>
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn" onClick={() => skillRef.current.showModal()}>
+            <button className="btn btn-outline" onClick={() => skillRef.current.showModal()}>
                 <h3 className="font-bold text-lg">{title}</h3>
-                <progress className="progress w-40" value={percent} max="100"></progress>
-                <p>{percent}%</p>
+                <RatingStar rating={rating} />
             </button >
-            <dialog ref={skillRef} className="modal">
-                <div className="modal-box w-11/12 max-w-5xl">
+            <dialog ref={skillRef} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
                     <h3 className="font-bold text-lg">{title}</h3>
                     <p className="py-4">{text}</p>
+                    <h3 className="font-bold text-lg">GitHub</h3>
                     <p>
-                        {gitHubTitle}:<a href={gitHubLink} target="_blank" rel="noopener noreferrer" className="link">{gitHubLink}</a>
+                        <a href={gitHubLink} target="_blank" rel="noopener noreferrer" className="link">{gitHubTitle}</a>
                     </p>
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
@@ -42,17 +71,34 @@ function SkillProgress({ skillRef, title, percent, text, gitHubLink = "#", gitHu
                     </form>
                 </div>
             </dialog>
-        </>
+        </div>
     )
 }
 
-SkillProgress.propTypes = {
+function RatingStar({ rating }) {
+    return (
+        <div className="rating">
+            {[...Array(5)].map((_, index) => {
+                const starClass = `mask mask-star rating-star ${index < rating ? "highlighted-star" : "faded-star"}`;
+                return (
+                    <span key={index} className={starClass}></span>
+                );
+            })}
+        </div >
+    )
+}
+
+SkillItem.propTypes = {
     skillRef: PropTypes.shape({
         current: PropTypes.instanceOf(Element)
     }),
     title: PropTypes.string,
-    percent: PropTypes.number,
+    rating: PropTypes.number,
     text: PropTypes.string,
     gitHubLink: PropTypes.string,
     gitHubTitle: PropTypes.string,
 };
+
+RatingStar.propTypes = {
+    rating: PropTypes.number,
+}
