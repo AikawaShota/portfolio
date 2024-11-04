@@ -59,7 +59,7 @@ export default function GlobalNav({ profileRef }) {
 
     return (
         <nav ref={globalNavRef} style={globalNavStyle} className="navbar bg-gray-50 sticky top-0 z-10">
-            <div className="navbar-start">
+            <div className="navbar-start min-w-fit">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
