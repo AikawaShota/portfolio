@@ -45,7 +45,7 @@ export default function SkillSet() {
     return (
         <div className="w-full min-h-screen bg-gray-50">
             <div className="md:w-9/12 mx-auto">
-                <h2 className="font-bold text-3xl text-center my-4">Language</h2>
+                <h2 className="font-bold text-3xl text-center py-4">Language</h2>
                 <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row md:mx-0 mx-5">
                     < SkillItem {...python} />
                     < SkillItem {...java} />
