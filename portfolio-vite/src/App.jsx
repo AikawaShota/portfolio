@@ -4,15 +4,21 @@ import "./App.css";
 import PortfolioIntro from "./components/PortfolioIntro.jsx";
 import GlobalNav from "./components/GlobalNav.jsx";
 import Profile from "./components/Profile.jsx";
+import SkillSet from "./components/SkillSet.jsx";
 
 function App() {
     const profileRef = useRef(null);
 
     return (
         <>
-            <PortfolioIntro />
+            <header>
+                <PortfolioIntro />
+            </header>
             <GlobalNav profileRef={profileRef} />
-            <Profile ref={profileRef} />
+            <main>
+                <Profile ref={profileRef} />
+                <SkillSet />
+            </main>
         </>
     )
 }

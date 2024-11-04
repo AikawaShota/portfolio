@@ -6,7 +6,7 @@ const Profile = forwardRef(function Profile(props, ref) {
     }
 
     return (
-        <div ref={ref} className="hero bg-base-200 min-h-screen" >
+        <div ref={ref} className="hero bg-gray-200 min-h-screen" >
             <div className="hero-content flex-col lg:flex-row">
                 <img
                     src="/images/ID_photo.JPG"
