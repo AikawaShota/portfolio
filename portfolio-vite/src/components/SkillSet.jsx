@@ -8,9 +8,14 @@ export default function SkillSet() {
         skillRef: pythonRef,
         title: "Python",
         rating: 1,
-        text: "私が得意な言語です。",
-        gitHubTitle: "植物管理アプリ",
-        gitHubLink: "https://github.com/AikawaShota/garden-management",
+        description: "主にバックエンド開発に利用しています。データ分析や機械学習の経験は無いので、現在勉強中です。",
+        experience: "2年(e-learning, 学校の授業)",
+        gitHubRepositories: [
+            {
+                title: "植物管理アプリ",
+                link: "https://github.com/AikawaShota/garden-management"
+            },
+        ]
     }
 
     const javaRef = useRef(null);
@@ -18,27 +23,30 @@ export default function SkillSet() {
         skillRef: javaRef,
         title: "Java",
         rating: 1,
-        text: "私が得意な言語です。",
-        gitHubTitle: "植物管理アプリ",
-        gitHubLink: "https://github.com/AikawaShota/garden-management",
+        description: "Java+Servletで簡単なWebアプリケーション開発を学びました。",
+        experience: "1年(学校の授業)",
     }
-
 
     const javascriptRef = useRef(null);
     const javascript = {
         skillRef: javascriptRef,
         title: "JavaScript",
         rating: 1,
-        text: "このサイトで主に使われている言語です。",
-        gitHubTitle: "植物管理アプリ",
-        gitHubLink: "https://github.com/AikawaShota/garden-management",
+        description: "フロントエンド開発に利用しています。このサイトもReact.jsで作成しています。これからバックエンド開発も学んでいきます。",
+        experience: "1年(学校の授業, 個人開発)",
+        gitHubRepositories: [
+            {
+                title: "ポートフォリオサイト(This site!)",
+                link: "https://github.com/AikawaShota/portfolio"
+            },
+        ]
     }
 
     return (
-        <div className="hero bg-gray-50 min-h-screen">
-            <div className="hero-content">
-                <h2 className="font-bold text-3xl">Language</h2>
-                <div className="grid grid-rows-2 grid-flow-col">
+        <div className="w-full min-h-screen bg-gray-50">
+            <div className="md:w-9/12 mx-auto">
+                <h2 className="font-bold text-3xl text-center my-4">Language</h2>
+                <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row md:mx-0 mx-5">
                     < SkillItem {...python} />
                     < SkillItem {...java} />
                     < SkillItem {...javascript} />
@@ -48,23 +56,36 @@ export default function SkillSet() {
     )
 }
 
-function SkillItem({ skillRef, title, rating, text, gitHubLink = "#", gitHubTitle = "N/A" }) {
+function SkillItem({ skillRef, title, rating, description, experience, gitHubRepositories = [] }) {
 
     return (
-        <div>
+        <div className="w-full">
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn btn-outline" onClick={() => skillRef.current.showModal()}>
+            <button className="btn btn-outline w-full h-fit justify-between" onClick={() => skillRef.current.showModal()}>
                 <h3 className="font-bold text-lg">{title}</h3>
                 <RatingStar rating={rating} />
             </button >
             <dialog ref={skillRef} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">{title}</h3>
-                    <p className="py-4">{text}</p>
-                    <h3 className="font-bold text-lg">GitHub</h3>
-                    <p>
-                        <a href={gitHubLink} target="_blank" rel="noopener noreferrer" className="link">{gitHubTitle}</a>
-                    </p>
+                    <p className="">{description}</p>
+                    <h3 className="font-bold text-lg mt-4">Experience</h3>
+                    <p className="">{experience}</p>
+                    <h3 className="font-bold text-lg mt-4">GitHub</h3>
+                    {gitHubRepositories.length > 0 ? (
+                        <ul className="list-decimal list-inside">
+                            {gitHubRepositories.map((repo, index) => (
+                                <li key={index} className="pb-2">
+                                    {repo.title}:<br />
+                                    <a href={repo.link} target="_blank" rel="noopener noreferrer" className="link">
+                                        {repo.link}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="text-gray-400">Coming Soon</p>
+                    )}
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -94,9 +115,9 @@ SkillItem.propTypes = {
     }),
     title: PropTypes.string,
     rating: PropTypes.number,
-    text: PropTypes.string,
-    gitHubLink: PropTypes.string,
-    gitHubTitle: PropTypes.string,
+    description: PropTypes.string,
+    experience: PropTypes.string,
+    gitHubRepositories: PropTypes.array,
 };
 
 RatingStar.propTypes = {
