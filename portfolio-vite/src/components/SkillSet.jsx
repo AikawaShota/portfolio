@@ -9,8 +9,8 @@ export default forwardRef(function SkillSet(props, skillRef) {
             skillRef: useRef(null),
             title: "Python",
             rating: 2,
-            description: "主にバックエンド開発に利用しています。データ分析や機械学習の経験は無いので、現在勉強中です。",
-            experience: "2年(e-learning, 学校の授業)",
+            description: "主にバックエンド開発に利用しています。データ分析や機械学習での利用経験はありませんが、現在勉強中です。",
+            experience: "2年(学校の授業, 個人開発, 競プロ)",
             gitHubRepositories: [
                 {
                     title: "植物管理アプリ",
@@ -24,7 +24,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
             title: "Java",
             rating: 1,
             description: "Java+Servletで簡単なWebアプリケーション開発を学びました。",
-            experience: "1年(学校の授業)",
+            experience: "半年(学校の授業)",
         },
         {
             id: "javascript",
@@ -46,7 +46,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
             title: "Go",
             rating: 1,
             description: "Restful APIの開発に利用しています。現在勉強中です。",
-            experience: "1年(学校の授業, 個人開発)",
+            experience: "半年(e-Learning, 書籍での学習)",
             gitHubRepositories: []
         },
         {
@@ -62,7 +62,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
                     link: "https://github.com/AikawaShota/portfolio"
                 },
             ]
-        }
+        },
     ]
 
     const frameworkAndLibrary = [
@@ -81,19 +81,57 @@ export default forwardRef(function SkillSet(props, skillRef) {
             ]
         },
         {
+            id: "flask",
+            skillRef: useRef(null),
+            title: "Flask",
+            rating: 1,
+            description: "Webアプリケーション開発を学ぶために利用しました。",
+            experience: "半年(学校の授業)",
+            gitHubRepositories: []
+        },
+        {
             id: "react",
             skillRef: useRef(null),
             title: "React.js",
             rating: 2,
             description: "モダンなフロントエンドフレームワークとして、Webアプリケーション開発に利用しています。",
-            experience: "1年(学校の授業, 個人開発)",
+            experience: "半年(個人開発)",
             gitHubRepositories: [
                 {
                     title: "ポートフォリオサイト(This site!)",
                     link: "https://github.com/AikawaShota/portfolio"
                 },
             ]
-        }
+        },
+    ]
+
+    const infrastructure = [
+        {
+            id: "aws",
+            skillRef: useRef(null),
+            title: "AWS",
+            rating: 1,
+            description: "個人開発のWebアプリをデプロイするための環境として勉強中です。",
+            experience: "半年(個人開発)",
+            gitHubRepositories: []
+        },
+    ]
+
+    const tool = [
+        {
+            id: "docker",
+            skillRef: useRef(null),
+            title: "Docker",
+            rating: 2,
+            description: "個人開発での環境構築からちょっとした勉強まで様々に利用しています。このポートフォリオもDockerで開発環境を構築しました。",
+            experience: "1年(個人開発)",
+            gitHubRepositories: [
+                {
+                    title: "ポートフォリオサイト(This site!)",
+                    link: "https://github.com/AikawaShota/portfolio"
+                },
+            ]
+        },
     ]
 
     return (
@@ -109,7 +147,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
                     </div>
                 </div>
                 <div>
-                    <h2 className="font-bold text-3xl py-4">Framework & Library</h2>
+                    <h2 className="font-bold text-3xl pt-10 pb-4">Framework & Library</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
                         {frameworkAndLibrary.map((skill) => (
                             <SkillItem key={skill.id} {...skill} />
@@ -117,16 +155,22 @@ export default forwardRef(function SkillSet(props, skillRef) {
                     </div>
                 </div>
                 <div>
-                    <h2 className="font-bold text-3xl py-4">Infrastructure</h2>
+                    <h2 className="font-bold text-3xl pt-10 pb-4">Infrastructure</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                        {infrastructure.map((skill) => (
+                            <SkillItem key={skill.id} {...skill} />
+                        ))}
                     </div>
                 </div>
                 <div>
-                    <h2 className="font-bold text-3xl py-4">Tool</h2>
+                    <h2 className="font-bold text-3xl pt-10 pb-4">Tool</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                        {tool.map((skill) => (
+                            <SkillItem key={skill.id} {...skill} />
+                        ))}
                     </div>
                 </div>
-                <div>
+                <div className="pt-10">
                     <div className="rating">
                         <span className="mask mask-star rating-star highlighted-star"></span>x1: 軽く触れたことがある
                     </div><br />
