@@ -5,6 +5,7 @@ import PortfolioIntro from "./components/PortfolioIntro.jsx";
 import GlobalNav from "./components/GlobalNav.jsx";
 import Profile from "./components/Profile.jsx";
 import SkillSet from "./components/SkillSet.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
     const profileRef = useRef(null);
@@ -19,6 +20,7 @@ function App() {
                 <Profile ref={profileRef} />
                 <SkillSet />
             </main>
+            <Footer />
         </>
     )
 }
