@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 
-export default function GlobalNav({ profileRef }) {
+export default function GlobalNav({ profileRef, skillRef }) {
     const [isVisible, setIsVisible] = useState(false);
     const globalNavRef = useRef(null);
 
@@ -79,7 +79,13 @@ export default function GlobalNav({ profileRef }) {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-40 p-2 shadow">
                         <li onClick={() => scrollToSection(profileRef)}><a>{personIcon}Profile</a></li>
-                        <li><a>{bagIcon}Portfolio</a></li>
+                        <li>
+                            <a>{bagIcon}Portfolio</a>
+                            <ul className="p-2">
+                                <li onClick={() => scrollToSection(skillRef)}><a>Skill</a></li>
+                                <li><a>Work</a></li>
+                            </ul>
+                        </li>
                         <li><a>{mailIcon}Contact</a></li>
                         <li><a>{openInNewIcon}Blog</a></li>
                     </ul>
@@ -87,11 +93,19 @@ export default function GlobalNav({ profileRef }) {
                 <a className="btn btn-ghost text-xl">AikawaShota&apos;s Portfolio</a>
             </div>
             <div className="navbar-end hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 ">
                     <li onClick={() => scrollToSection(profileRef)}><a>{personIcon}Profile</a></li>
-                    <li><a>{bagIcon}Portfolio</a></li>
+                    <li>
+                        <details>
+                            <summary>{bagIcon}Portfolio</summary>
+                            <ul className="p-4 w-full">
+                                <li onClick={() => scrollToSection(skillRef)}><a>Skill</a></li>
+                                <li><a>Work</a></li>
+                            </ul>
+                        </details>
+                    </li>
                     <li><a>{mailIcon}Contact</a></li>
-                    <li><a>{openInNewIcon}Blog</a></li>
+                    <li><a href="https://mesekit.com" target="_blank">{openInNewIcon}Blog</a></li>
                 </ul>
             </div>
         </nav>
