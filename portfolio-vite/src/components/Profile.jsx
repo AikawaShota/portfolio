@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-const Profile = forwardRef(function Profile(props, ref) {
+export default forwardRef(function Profile(props, ref) {
     const handleRedirect = (url) => {
         window.open(url, "_blank");
     }
@@ -41,5 +41,3 @@ const Profile = forwardRef(function Profile(props, ref) {
         </div >
     )
 });
-
-export default Profile;
