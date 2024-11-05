@@ -1,8 +1,8 @@
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import "./skillItem.css";
 
-export default function SkillSet() {
+export default forwardRef(function SkillSet(props, skillRef) {
     const pythonRef = useRef(null);
     const python = {
         skillRef: pythonRef,
@@ -68,9 +68,9 @@ export default function SkillSet() {
     }
 
     return (
-        <div className="w-full min-h-screen bg-gray-50">
+        <div ref={skillRef} className="w-full min-h-screen bg-gray-50">
             <div className="md:w-9/12 mx-auto md:px-0 px-5">
-                <h1 className="text-5xl font-bold pt-10">Skills</h1>
+                <h1 className="text-5xl font-bold pt-10">Skill</h1>
                 <div>
                     <h2 className="font-bold text-3xl py-4">Language</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
@@ -99,7 +99,7 @@ export default function SkillSet() {
             </div>
         </div>
     )
-}
+});
 
 function SkillItem({ skillRef, title, rating, description, experience, gitHubRepositories = [] }) {
 
