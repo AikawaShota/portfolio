@@ -42,14 +42,59 @@ export default function SkillSet() {
         ]
     }
 
+    const goRef = useRef(null);
+    const go = {
+        skillRef: goRef,
+        title: "Go",
+        rating: 1,
+        description: "Restful APIの開発に利用しています。現在勉強中です。",
+        experience: "1年(学校の授業, 個人開発)",
+        gitHubRepositories: []
+    }
+
+    const htmlCssRef = useRef(null);
+    const htmlCss = {
+        skillRef: htmlCssRef,
+        title: "HTML / CSS",
+        rating: 1,
+        description: "Webページの構造やデザインを作成するために利用しています。",
+        experience: "1年(学校の授業, 個人開発)",
+        gitHubRepositories: [
+            {
+                title: "ポートフォリオサイト(This site!)",
+                link: "https://github.com/AikawaShota/portfolio"
+            },
+        ]
+    }
+
     return (
         <div className="w-full min-h-screen bg-gray-50">
-            <div className="md:w-9/12 mx-auto">
-                <h2 className="font-bold text-3xl text-center py-4">Language</h2>
-                <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row md:mx-0 mx-5">
-                    < SkillItem {...python} />
-                    < SkillItem {...java} />
-                    < SkillItem {...javascript} />
+            <div className="md:w-9/12 mx-auto md:px-0 px-5">
+                <h1 className="text-5xl font-bold pt-10">Skills</h1>
+                <div>
+                    <h2 className="font-bold text-3xl py-4">Language</h2>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                        < SkillItem {...python} />
+                        < SkillItem {...java} />
+                        < SkillItem {...javascript} />
+                        < SkillItem {...go} />
+                        < SkillItem {...htmlCss} />
+                    </div>
+                </div>
+                <div>
+                    <h2 className="font-bold text-3xl py-4">Framework & Library</h2>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                    </div>
+                </div>
+                <div>
+                    <h2 className="font-bold text-3xl py-4">Infrastructure</h2>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                    </div>
+                </div>
+                <div>
+                    <h2 className="font-bold text-3xl py-4">Tool</h2>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                    </div>
                 </div>
             </div>
         </div>
