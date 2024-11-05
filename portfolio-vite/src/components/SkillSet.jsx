@@ -3,87 +3,117 @@ import PropTypes from "prop-types";
 import "./skillItem.css";
 
 export default forwardRef(function SkillSet(props, skillRef) {
-    const pythonRef = useRef(null);
-    const python = {
-        skillRef: pythonRef,
-        title: "Python",
-        rating: 1,
-        description: "主にバックエンド開発に利用しています。データ分析や機械学習の経験は無いので、現在勉強中です。",
-        experience: "2年(e-learning, 学校の授業)",
-        gitHubRepositories: [
-            {
-                title: "植物管理アプリ",
-                link: "https://github.com/AikawaShota/garden-management"
-            },
-        ]
-    }
+    const languages = [
+        {
+            id: "python",
+            skillRef: useRef(null),
+            title: "Python",
+            rating: 2,
+            description: "主にバックエンド開発に利用しています。データ分析や機械学習の経験は無いので、現在勉強中です。",
+            experience: "2年(e-learning, 学校の授業)",
+            gitHubRepositories: [
+                {
+                    title: "植物管理アプリ",
+                    link: "https://github.com/AikawaShota/garden-management"
+                },
+            ]
+        },
+        {
+            id: "java",
+            skillRef: useRef(null),
+            title: "Java",
+            rating: 1,
+            description: "Java+Servletで簡単なWebアプリケーション開発を学びました。",
+            experience: "1年(学校の授業)",
+        },
+        {
+            id: "javascript",
+            skillRef: useRef(null),
+            title: "JavaScript",
+            rating: 2,
+            description: "フロントエンド開発に利用しています。このサイトもReact.jsで作成しています。これからバックエンド開発も学んでいきます。",
+            experience: "1年(学校の授業, 個人開発)",
+            gitHubRepositories: [
+                {
+                    title: "ポートフォリオサイト(This site!)",
+                    link: "https://github.com/AikawaShota/portfolio"
+                },
+            ]
+        },
+        {
+            id: "go",
+            skillRef: useRef(null),
+            title: "Go",
+            rating: 1,
+            description: "Restful APIの開発に利用しています。現在勉強中です。",
+            experience: "1年(学校の授業, 個人開発)",
+            gitHubRepositories: []
+        },
+        {
+            id: "html_css",
+            skillRef: useRef(null),
+            title: "HTML / CSS",
+            rating: 2,
+            description: "Webページの構造やデザインを作成するために利用しています。",
+            experience: "1年(学校の授業, 個人開発)",
+            gitHubRepositories: [
+                {
+                    title: "ポートフォリオサイト(This site!)",
+                    link: "https://github.com/AikawaShota/portfolio"
+                },
+            ]
+        }
+    ]
 
-    const javaRef = useRef(null);
-    const java = {
-        skillRef: javaRef,
-        title: "Java",
-        rating: 1,
-        description: "Java+Servletで簡単なWebアプリケーション開発を学びました。",
-        experience: "1年(学校の授業)",
-    }
-
-    const javascriptRef = useRef(null);
-    const javascript = {
-        skillRef: javascriptRef,
-        title: "JavaScript",
-        rating: 1,
-        description: "フロントエンド開発に利用しています。このサイトもReact.jsで作成しています。これからバックエンド開発も学んでいきます。",
-        experience: "1年(学校の授業, 個人開発)",
-        gitHubRepositories: [
-            {
-                title: "ポートフォリオサイト(This site!)",
-                link: "https://github.com/AikawaShota/portfolio"
-            },
-        ]
-    }
-
-    const goRef = useRef(null);
-    const go = {
-        skillRef: goRef,
-        title: "Go",
-        rating: 1,
-        description: "Restful APIの開発に利用しています。現在勉強中です。",
-        experience: "1年(学校の授業, 個人開発)",
-        gitHubRepositories: []
-    }
-
-    const htmlCssRef = useRef(null);
-    const htmlCss = {
-        skillRef: htmlCssRef,
-        title: "HTML / CSS",
-        rating: 1,
-        description: "Webページの構造やデザインを作成するために利用しています。",
-        experience: "1年(学校の授業, 個人開発)",
-        gitHubRepositories: [
-            {
-                title: "ポートフォリオサイト(This site!)",
-                link: "https://github.com/AikawaShota/portfolio"
-            },
-        ]
-    }
+    const frameworkAndLibrary = [
+        {
+            id: "django",
+            skillRef: useRef(null),
+            title: "Django",
+            rating: 2,
+            description: "CRUDのWebアプリケーション開発とMVT(MVC)モデルについて学ぶために利用しました。",
+            experience: "1年(学校の授業, 個人開発)",
+            gitHubRepositories: [
+                {
+                    title: "植物管理アプリ",
+                    link: "https://github.com/AikawaShota/garden-management"
+                },
+            ]
+        },
+        {
+            id: "react",
+            skillRef: useRef(null),
+            title: "React.js",
+            rating: 2,
+            description: "モダンなフロントエンドフレームワークとして、Webアプリケーション開発に利用しています。",
+            experience: "1年(学校の授業, 個人開発)",
+            gitHubRepositories: [
+                {
+                    title: "ポートフォリオサイト(This site!)",
+                    link: "https://github.com/AikawaShota/portfolio"
+                },
+            ]
+        }
+    ]
 
     return (
         <div ref={skillRef} className="w-full min-h-screen bg-gray-50">
             <div className="md:w-9/12 mx-auto md:px-0 px-5">
-                <h1 className="text-5xl font-bold pt-10">Skill</h1>
+                <h1 className="text-5xl font-bold pt-10 pb-4">Skill</h1>
                 <div>
                     <h2 className="font-bold text-3xl py-4">Language</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
-                        < SkillItem {...python} />
-                        < SkillItem {...java} />
-                        < SkillItem {...javascript} />
-                        < SkillItem {...go} />
-                        < SkillItem {...htmlCss} />
+                        {languages.map((skill) => (
+                            <SkillItem key={skill.id} {...skill} />
+                        ))}
                     </div>
                 </div>
                 <div>
                     <h2 className="font-bold text-3xl py-4">Framework & Library</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                        {frameworkAndLibrary.map((skill) => (
+                            <SkillItem key={skill.id} {...skill} />
+                        ))}
                     </div>
                 </div>
                 <div>
@@ -94,6 +124,23 @@ export default forwardRef(function SkillSet(props, skillRef) {
                 <div>
                     <h2 className="font-bold text-3xl py-4">Tool</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                    </div>
+                </div>
+                <div>
+                    <div className="rating">
+                        <span className="mask mask-star rating-star highlighted-star"></span>x1: 軽く触れたことがある
+                    </div><br />
+                    <div className="rating">
+                        <span className="mask mask-star rating-star highlighted-star"></span>x2: 個人開発での利用経験がある
+                    </div><br />
+                    <div className="rating">
+                        <span className="mask mask-star rating-star highlighted-star"></span>x3: 実務での利用経験がある
+                    </div><br />
+                    <div className="rating">
+                        <span className="mask mask-star rating-star highlighted-star"></span>x4: 業務の課題に応じて柔軟に使いこなせる
+                    </div><br />
+                    <div className="rating">
+                        <span className="mask mask-star rating-star highlighted-star"></span>x5: 他者に対して教育・指導ができる
                     </div>
                 </div>
             </div>
