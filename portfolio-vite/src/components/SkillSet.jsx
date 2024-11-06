@@ -137,9 +137,9 @@ export default forwardRef(function SkillSet(props, skillRef) {
     return (
         <div ref={skillRef} className="w-full min-h-screen bg-gray-50">
             <div className="md:w-9/12 mx-auto md:px-0 px-5">
-                <h1 className="text-5xl font-bold pt-10 pb-4">Skill</h1>
+                <h1 className="text-5xl font-bold pt-10 pb-4">Skills</h1>
                 <div>
-                    <h2 className="font-bold text-3xl py-4">Language</h2>
+                    <h2 className="font-bold text-3xl py-4">Languages</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
                         {languages.map((skill) => (
                             <SkillItem key={skill.id} {...skill} />
@@ -147,7 +147,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
                     </div>
                 </div>
                 <div>
-                    <h2 className="font-bold text-3xl pt-10 pb-4">Framework & Library</h2>
+                    <h2 className="font-bold text-3xl pt-10 pb-4">Frameworks & Libraries</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
                         {frameworkAndLibrary.map((skill) => (
                             <SkillItem key={skill.id} {...skill} />
@@ -155,7 +155,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
                     </div>
                 </div>
                 <div>
-                    <h2 className="font-bold text-3xl pt-10 pb-4">Infrastructure</h2>
+                    <h2 className="font-bold text-3xl pt-10 pb-4">Infrastructures</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
                         {infrastructure.map((skill) => (
                             <SkillItem key={skill.id} {...skill} />
@@ -163,7 +163,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
                     </div>
                 </div>
                 <div>
-                    <h2 className="font-bold text-3xl pt-10 pb-4">Tool</h2>
+                    <h2 className="font-bold text-3xl pt-10 pb-4">Tools</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
                         {tool.map((skill) => (
                             <SkillItem key={skill.id} {...skill} />

@@ -82,8 +82,8 @@ export default function GlobalNav({ profileRef, skillRef }) {
                         <li>
                             <a>{bagIcon}Portfolio</a>
                             <ul className="p-2">
-                                <li onClick={() => scrollToSection(skillRef)}><a>Skill</a></li>
-                                <li><a>Work</a></li>
+                                <li onClick={() => scrollToSection(skillRef)}><a>Skills</a></li>
+                                <li><a>Works</a></li>
                             </ul>
                         </li>
                         <li><a>{mailIcon}Contact</a></li>
@@ -99,8 +99,8 @@ export default function GlobalNav({ profileRef, skillRef }) {
                         <details>
                             <summary>{bagIcon}Portfolio</summary>
                             <ul className="p-4 w-full">
-                                <li onClick={() => scrollToSection(skillRef)}><a>Skill</a></li>
-                                <li><a>Work</a></li>
+                                <li onClick={() => scrollToSection(skillRef)}><a>Skills</a></li>
+                                <li><a>Works</a></li>
                             </ul>
                         </details>
                     </li>
