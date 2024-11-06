@@ -87,7 +87,7 @@ export default function GlobalNav({ profileRef, skillsRef, worksRef }) {
                             </ul>
                         </li>
                         <li><a>{mailIcon}Contact</a></li>
-                        <li><a>{openInNewIcon}Blog</a></li>
+                        <li><a href="https://mesekit.com" target="_blank">{openInNewIcon}Blog</a></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">AikawaShota&apos;s Portfolio</a>
