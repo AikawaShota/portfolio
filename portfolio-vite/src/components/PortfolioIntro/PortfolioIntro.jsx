@@ -19,7 +19,7 @@ export default function PortfolioIntro() {
         function init() {
 
             camera = new THREE.PerspectiveCamera(45, document.documentElement.clientWidth / window.innerHeight, 1, 10000);
-            camera.position.set(0, 0, 750);
+            camera.position.set(0, 0, 900);
 
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0xf9fafb);
@@ -41,7 +41,7 @@ export default function PortfolioIntro() {
                     side: THREE.DoubleSide
                 });
 
-                const message = "Welcome to\nAikawaShota's\nPortfolio.";
+                const message = "AikawaShota's\n    Portfolio.";
 
                 const shapes = font.generateShapes(message, 100);
 
@@ -57,7 +57,7 @@ export default function PortfolioIntro() {
                 // make shape ( N.B. edge view not visible )
 
                 const text = new THREE.Mesh(geometry, matLite);
-                text.position.z = - 10;
+                text.position.z = 16;
                 scene.add(text);
 
                 // make line shape ( N.B. edge view remains visible )
@@ -111,9 +111,12 @@ export default function PortfolioIntro() {
             container.appendChild(renderer.domElement);
 
             controls = new OrbitControls(camera, renderer.domElement);
-            controls.rotateSpeed = 0.3;
+            controls.rotateSpeed = 0.5;
             controls.enableZoom = false;
-            controls.target.set(0, 0, 400);
+            controls.enablePan = false;
+            controls.maxPolarAngle = Math.PI * 0.55;
+            controls.minPolarAngle = Math.PI * 0.45;
+            controls.target.set(0, 0, 458);
             controls.update();
 
             controls.addEventListener("change", render);
