@@ -6,20 +6,23 @@ import GlobalNav from "./components/GlobalNav/GlobalNav.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import SkillSet from "./components/SkillSet/SkillSet.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import Works from "./components/Works/Works.jsx";
 
 function App() {
     const profileRef = useRef(null);
-    const skillRef = useRef(null);
+    const skillsRef = useRef(null);
+    const worksRef = useRef(null);
 
     return (
         <>
             <header>
                 <PortfolioIntro />
             </header>
-            <GlobalNav profileRef={profileRef} skillRef={skillRef} />
+            <GlobalNav profileRef={profileRef} skillsRef={skillsRef} worksRef={worksRef} />
             <main>
                 <Profile ref={profileRef} />
-                <SkillSet ref={skillRef} />
+                <SkillSet ref={skillsRef} />
+                <Works ref={worksRef} />
             </main>
             <Footer />
         </>

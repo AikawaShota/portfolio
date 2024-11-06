@@ -2,7 +2,7 @@ import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import "./skillItem.css";
 
-export default forwardRef(function SkillSet(props, skillRef) {
+export default forwardRef(function SkillSet(props, skillsRef) {
     const languages = [
         {
             id: "python",
@@ -135,7 +135,7 @@ export default forwardRef(function SkillSet(props, skillRef) {
     ]
 
     return (
-        <div ref={skillRef} className="w-full min-h-screen bg-gray-50">
+        <div ref={skillsRef} className="w-full min-h-screen bg-gray-50">
             <div className="md:w-9/12 mx-auto md:px-0 px-5">
                 <h1 className="text-5xl font-bold pt-10 pb-4">Skills</h1>
                 <div>

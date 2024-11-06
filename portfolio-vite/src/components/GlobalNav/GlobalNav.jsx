@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 
-export default function GlobalNav({ profileRef, skillRef }) {
+export default function GlobalNav({ profileRef, skillsRef, worksRef }) {
     const [isVisible, setIsVisible] = useState(false);
     const globalNavRef = useRef(null);
 
@@ -82,8 +82,8 @@ export default function GlobalNav({ profileRef, skillRef }) {
                         <li>
                             <a>{bagIcon}Portfolio</a>
                             <ul className="p-2">
-                                <li onClick={() => scrollToSection(skillRef)}><a>Skills</a></li>
-                                <li><a>Works</a></li>
+                                <li onClick={() => scrollToSection(skillsRef)}><a>Skills</a></li>
+                                <li onClick={() => scrollToSection(worksRef)}><a>Works</a></li>
                             </ul>
                         </li>
                         <li><a>{mailIcon}Contact</a></li>
@@ -99,8 +99,8 @@ export default function GlobalNav({ profileRef, skillRef }) {
                         <details>
                             <summary>{bagIcon}Portfolio</summary>
                             <ul className="p-4 w-full">
-                                <li onClick={() => scrollToSection(skillRef)}><a>Skills</a></li>
-                                <li><a>Works</a></li>
+                                <li onClick={() => scrollToSection(skillsRef)}><a>Skills</a></li>
+                                <li onClick={() => scrollToSection(worksRef)}><a>Works</a></li>
                             </ul>
                         </details>
                     </li>
@@ -116,7 +116,10 @@ GlobalNav.propTypes = {
     profileRef: PropTypes.shape({
         current: PropTypes.instanceOf(Element)
     }),
-    skillRef: PropTypes.shape({
+    skillsRef: PropTypes.shape({
+        current: PropTypes.instanceOf(Element)
+    }),
+    worksRef: PropTypes.shape({
         current: PropTypes.instanceOf(Element)
     }),
 };
