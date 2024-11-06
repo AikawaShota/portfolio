@@ -1,3 +1,14 @@
+/* ===== Google Fonts ===== */
+/* Ubuntu */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+/* Noto Sans JP */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+/* ===== END Google Fonts ===== */
+
 html {
     scroll-padding-top: 4.5rem;
+}
+
+#root {
+    font-family: "Ubuntu", "Noto Sans JP", sans-serif;
 }
