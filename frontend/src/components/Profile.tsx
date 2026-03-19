@@ -1,15 +1,12 @@
 import { forwardRef } from "react";
 
 const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
-    const handleRedirect = (url: string) => {
-        window.open(url, "_blank");
-    }
-
     return (
-        <div ref={ref} className="hero bg-gray-200 min-h-screen">
-            <div className="hero-content flex-col lg:flex-row">
+        <section ref={ref} className="hero bg-gray-200 min-h-screen">
+            <div className="hero-content flex-col gap-10 lg:flex-row">
                 <img
                     src="/images/ID_photo.JPG"
+                    alt="AikawaShota"
                     className="max-w-sm rounded-3xl shadow-2xl"
                 />
                 <div className="max-w-lg">
@@ -20,26 +17,32 @@ const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
                         開発中はどうすれば楽ができるかをずっと考えています。
                         趣味は麻雀と将棋。読みが外れることもありますが、運と戦略で何とかしています。
                     </p>
-                    <div className="flex justify-between max-w-56">
-                        <button
-                            onClick={() => handleRedirect("https://mesekit.com/")}
+                    <div className="flex max-w-md flex-wrap gap-3">
+                        <a
+                            href="https://mesekit.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="btn btn-outline">
                             Blog
-                        </button>
-                        <button
-                            onClick={() => handleRedirect("https://github.com/AikawaShota/")}
+                        </a>
+                        <a
+                            href="https://github.com/AikawaShota/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="btn btn-outline">
                             GitHub
-                        </button>
-                        <button
-                            onClick={() => handleRedirect("https://x.com/aikawa_shota")}
+                        </a>
+                        <a
+                            href="https://x.com/aikawa_shota"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="btn btn-outline">
                             𝕏
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 });
 
