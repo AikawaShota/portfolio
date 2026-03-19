@@ -42,11 +42,11 @@ resource "aws_cloudfront_distribution" "site" {
   }
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "s3-site-origin"
-
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = "s3-site-origin"
     viewer_protocol_policy = "redirect-to-https"
+    compress               = true
 
     forwarded_values {
       query_string = false
@@ -56,6 +56,8 @@ resource "aws_cloudfront_distribution" "site" {
       }
     }
   }
+
+  price_class = "PriceClass_100"
 
   restrictions {
     geo_restriction {
