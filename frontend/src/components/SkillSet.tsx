@@ -1,10 +1,23 @@
-import { useRef, forwardRef } from "react";
-import PropTypes from "prop-types";
+import { useRef, forwardRef, type RefObject } from "react";
 import "./skillItem.css";
 
-export default forwardRef(function SkillSet(props, skillRef) {
-    const pythonRef = useRef(null);
-    const python = {
+interface GitHubRepository {
+    title: string;
+    link: string;
+}
+
+interface SkillData {
+    skillRef: RefObject<HTMLDialogElement>;
+    title: string;
+    rating: number;
+    description: string;
+    experience: string;
+    gitHubRepositories?: GitHubRepository[];
+}
+
+const SkillSet = forwardRef<HTMLDivElement>(function SkillSet(_props, skillRef) {
+    const pythonRef = useRef<HTMLDialogElement>(null);
+    const python: SkillData = {
         skillRef: pythonRef,
         title: "Python",
         rating: 1,
@@ -13,13 +26,13 @@ export default forwardRef(function SkillSet(props, skillRef) {
         gitHubRepositories: [
             {
                 title: "植物管理アプリ",
-                link: "https://github.com/AikawaShota/garden-management"
+                link: "https://github.com/AikawaShota/garden-management",
             },
-        ]
+        ],
     }
 
-    const javaRef = useRef(null);
-    const java = {
+    const javaRef = useRef<HTMLDialogElement>(null);
+    const java: SkillData = {
         skillRef: javaRef,
         title: "Java",
         rating: 1,
@@ -27,8 +40,8 @@ export default forwardRef(function SkillSet(props, skillRef) {
         experience: "1年(学校の授業)",
     }
 
-    const javascriptRef = useRef(null);
-    const javascript = {
+    const javascriptRef = useRef<HTMLDialogElement>(null);
+    const javascript: SkillData = {
         skillRef: javascriptRef,
         title: "JavaScript",
         rating: 1,
@@ -37,23 +50,23 @@ export default forwardRef(function SkillSet(props, skillRef) {
         gitHubRepositories: [
             {
                 title: "ポートフォリオサイト(This site!)",
-                link: "https://github.com/AikawaShota/portfolio"
+                link: "https://github.com/AikawaShota/portfolio",
             },
-        ]
+        ],
     }
 
-    const goRef = useRef(null);
-    const go = {
+    const goRef = useRef<HTMLDialogElement>(null);
+    const go: SkillData = {
         skillRef: goRef,
         title: "Go",
         rating: 1,
         description: "Restful APIの開発に利用しています。現在勉強中です。",
         experience: "1年(学校の授業, 個人開発)",
-        gitHubRepositories: []
+        gitHubRepositories: [],
     }
 
-    const htmlCssRef = useRef(null);
-    const htmlCss = {
+    const htmlCssRef = useRef<HTMLDialogElement>(null);
+    const htmlCss: SkillData = {
         skillRef: htmlCssRef,
         title: "HTML / CSS",
         rating: 1,
@@ -62,9 +75,9 @@ export default forwardRef(function SkillSet(props, skillRef) {
         gitHubRepositories: [
             {
                 title: "ポートフォリオサイト(This site!)",
-                link: "https://github.com/AikawaShota/portfolio"
+                link: "https://github.com/AikawaShota/portfolio",
             },
-        ]
+        ],
     }
 
     return (
@@ -74,53 +87,48 @@ export default forwardRef(function SkillSet(props, skillRef) {
                 <div>
                     <h2 className="font-bold text-3xl py-4">Language</h2>
                     <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
-                        < SkillItem {...python} />
-                        < SkillItem {...java} />
-                        < SkillItem {...javascript} />
-                        < SkillItem {...go} />
-                        < SkillItem {...htmlCss} />
+                        <SkillItem {...python} />
+                        <SkillItem {...java} />
+                        <SkillItem {...javascript} />
+                        <SkillItem {...go} />
+                        <SkillItem {...htmlCss} />
                     </div>
                 </div>
                 <div>
                     <h2 className="font-bold text-3xl py-4">Framework & Library</h2>
-                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
-                    </div>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row" />
                 </div>
                 <div>
                     <h2 className="font-bold text-3xl py-4">Infrastructure</h2>
-                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
-                    </div>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row" />
                 </div>
                 <div>
                     <h2 className="font-bold text-3xl py-4">Tool</h2>
-                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
-                    </div>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row" />
                 </div>
             </div>
         </div>
     )
 });
 
-function SkillItem({ skillRef, title, rating, description, experience, gitHubRepositories = [] }) {
-
+function SkillItem({ skillRef, title, rating, description, experience, gitHubRepositories = [] }: SkillData) {
     return (
         <div className="w-full">
-            {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn btn-outline w-full h-fit justify-between" onClick={() => skillRef.current.showModal()}>
+            <button className="btn btn-outline w-full h-fit justify-between" onClick={() => skillRef.current?.showModal()}>
                 <h3 className="font-bold text-lg">{title}</h3>
                 <RatingStar rating={rating} />
-            </button >
+            </button>
             <dialog ref={skillRef} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">{title}</h3>
-                    <p className="">{description}</p>
+                    <p>{description}</p>
                     <h3 className="font-bold text-lg mt-4">Experience</h3>
-                    <p className="">{experience}</p>
+                    <p>{experience}</p>
                     <h3 className="font-bold text-lg mt-4">GitHub</h3>
                     {gitHubRepositories.length > 0 ? (
                         <ul className="list-decimal list-inside">
-                            {gitHubRepositories.map((repo, index) => (
-                                <li key={index} className="pb-2">
+                            {gitHubRepositories.map((repo) => (
+                                <li key={repo.link} className="pb-2">
                                     {repo.title}:<br />
                                     <a href={repo.link} target="_blank" rel="noopener noreferrer" className="link">
                                         {repo.link}
@@ -132,7 +140,6 @@ function SkillItem({ skillRef, title, rating, description, experience, gitHubRep
                         <p className="text-gray-400">Coming Soon</p>
                     )}
                     <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                 </div>
@@ -141,30 +148,17 @@ function SkillItem({ skillRef, title, rating, description, experience, gitHubRep
     )
 }
 
-function RatingStar({ rating }) {
+function RatingStar({ rating }: { rating: number }) {
     return (
         <div className="rating">
             {[...Array(5)].map((_, index) => {
                 const starClass = `mask mask-star rating-star ${index < rating ? "highlighted-star" : "faded-star"}`;
                 return (
-                    <span key={index} className={starClass}></span>
+                    <span key={index} className={starClass} />
                 );
             })}
-        </div >
+        </div>
     )
 }
 
-SkillItem.propTypes = {
-    skillRef: PropTypes.shape({
-        current: PropTypes.instanceOf(Element)
-    }),
-    title: PropTypes.string,
-    rating: PropTypes.number,
-    description: PropTypes.string,
-    experience: PropTypes.string,
-    gitHubRepositories: PropTypes.array,
-};
-
-RatingStar.propTypes = {
-    rating: PropTypes.number,
-}
+export default SkillSet;

@@ -1,15 +1,15 @@
 import { useRef } from "react";
 import "destyle.css/destyle.min.css";
 import "./App.css";
-import PortfolioIntro from "./components/PortfolioIntro.jsx";
-import GlobalNav from "./components/GlobalNav.jsx";
-import Profile from "./components/Profile.jsx";
-import SkillSet from "./components/SkillSet.jsx";
-import Footer from "./components/Footer.jsx";
+import PortfolioIntro from "./components/PortfolioIntro";
+import GlobalNav from "./components/GlobalNav";
+import Profile from "./components/Profile";
+import SkillSet from "./components/SkillSet";
+import Footer from "./components/Footer";
 
 function App() {
-    const profileRef = useRef(null);
-    const skillRef = useRef(null);
+    const profileRef = useRef<HTMLDivElement>(null);
+    const skillRef = useRef<HTMLDivElement>(null);
 
     return (
         <>

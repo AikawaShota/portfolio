@@ -1,16 +1,17 @@
 import { forwardRef } from "react";
 
-const Profile = forwardRef(function Profile(props, ref) {
-    const handleRedirect = (url) => {
+const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
+    const handleRedirect = (url: string) => {
         window.open(url, "_blank");
     }
 
     return (
-        <div ref={ref} className="hero bg-gray-200 min-h-screen" >
+        <div ref={ref} className="hero bg-gray-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row">
                 <img
                     src="/images/ID_photo.JPG"
-                    className="max-w-sm rounded-3xl shadow-2xl" />
+                    className="max-w-sm rounded-3xl shadow-2xl"
+                />
                 <div className="max-w-lg">
                     <h1 className="text-5xl font-bold">Profile</h1>
                     <p className="py-6 leading-loose">
@@ -38,7 +39,7 @@ const Profile = forwardRef(function Profile(props, ref) {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 });
 

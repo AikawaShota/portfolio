@@ -1,28 +1,30 @@
-// React
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, type CSSProperties, type RefObject } from "react";
 
-import PropTypes from "prop-types";
+type SectionRef = RefObject<HTMLElement>;
 
-export default function GlobalNav({ profileRef, skillRef }) {
+interface GlobalNavProps {
+    profileRef: SectionRef;
+    skillRef: SectionRef;
+}
+
+export default function GlobalNav({ profileRef, skillRef }: GlobalNavProps) {
     const [isVisible, setIsVisible] = useState(false);
-    const globalNavRef = useRef(null);
+    const globalNavRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         const globalNav = globalNavRef.current;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // 要素がビューポートに入ったかどうかを確認
                 setIsVisible(entry.isIntersecting);
             },
-            { threshold: 1.0 } // 完全に表示されたタイミングで発火
+            { threshold: 1.0 }
         );
 
         if (globalNav) {
             observer.observe(globalNav);
         }
 
-        // コンポーネントがアンマウントされたときに監視を解除
         return () => {
             if (globalNav) {
                 observer.unobserve(globalNav);
@@ -30,13 +32,11 @@ export default function GlobalNav({ profileRef, skillRef }) {
         };
     }, []);
 
-    // CSS
-    const globalNavStyle = {
+    const globalNavStyle: CSSProperties = {
         opacity: isVisible ? 1 : 0,
         transition: "opacity 1s ease",
     }
 
-    // SVG
     const personIcon = (
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" /></svg>
     )
@@ -53,8 +53,8 @@ export default function GlobalNav({ profileRef, skillRef }) {
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm0-80h640v-440H160v440Zm240-520h160v-80H400v80ZM160-200v-440 440Z" /></svg>
     )
 
-    const scrollToSection = (ref) => {
-        ref.current.scrollIntoView({ behavior: "smooth" });
+    const scrollToSection = (ref: SectionRef) => {
+        ref.current?.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
@@ -111,12 +111,3 @@ export default function GlobalNav({ profileRef, skillRef }) {
         </nav>
     )
 }
-
-GlobalNav.propTypes = {
-    profileRef: PropTypes.shape({
-        current: PropTypes.instanceOf(Element)
-    }),
-    skillRef: PropTypes.shape({
-        current: PropTypes.instanceOf(Element)
-    }),
-};
