@@ -146,8 +146,8 @@ export default function PortfolioIntro() {
     }, []);
 
     return (
-        <header className="animate-fade h-screen cursor-grab active:cursor-grabbing">
+        <section className="animate-fade h-screen cursor-grab active:cursor-grabbing">
             <div ref={containerRef} />
-        </header>
+        </section>
     );
 }

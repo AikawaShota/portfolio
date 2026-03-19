@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import "destyle.css/destyle.min.css";
-import "./App.css";
 import PortfolioIntro from "./components/PortfolioIntro";
 import GlobalNav from "./components/GlobalNav";
 import Profile from "./components/Profile";
@@ -13,9 +12,7 @@ function App() {
 
     return (
         <>
-            <header>
-                <PortfolioIntro />
-            </header>
+            <PortfolioIntro />
             <GlobalNav profileRef={profileRef} skillRef={skillRef} />
             <main>
                 <Profile ref={profileRef} />
