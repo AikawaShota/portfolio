@@ -8,3 +8,8 @@ variable "site_bucket_name" {
   type        = string
   description = "S3 bucket name for the portfolio site."
 }
+
+variable "site_domain_name" {
+  type        = string
+  description = "Primary domain name for the portfolio site."
+}
