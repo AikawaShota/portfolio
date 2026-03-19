@@ -2,8 +2,12 @@
 .env
 
 # Terraform
-.terraform
-.tfstate
+.terraform/
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
 
 # Node
 node_modules
