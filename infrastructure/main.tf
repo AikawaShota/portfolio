@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "site" {
-  bucket = "aikawashota-portfolio-site-dev"
+  bucket = var.site_bucket_name
 }
 
 resource "aws_s3_bucket_versioning" "site" {
-  bucket = aws_s3_bucket.site.id
+  bucket = var.site_bucket_name
 
   versioning_configuration {
     status = "Enabled"
@@ -11,7 +11,7 @@ resource "aws_s3_bucket_versioning" "site" {
 }
 
 resource "aws_s3_bucket_public_access_block" "site" {
-  bucket = aws_s3_bucket.site.id
+  bucket = var.site_bucket_name
 
   block_public_acls = true
   ignore_public_acls = true
