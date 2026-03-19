@@ -6,7 +6,7 @@ services:
       - "3000:3000"
     volumes:
       - type: bind
-        source: ./portfolio-vite
+        source: ./frontend
         target: /usr/src/app
       # コンテナ側のnode_modulesがホスト側のnode_modulesで上書きされるのを防ぐ。(volume trick)
       - type: volume
