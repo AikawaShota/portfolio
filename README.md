@@ -1,86 +1,71 @@
 # 相川祥太のポートフォリオ
 
-相川(repositry owner)のスキル、プロジェクト、クリエイティビティを紹介する魅力的なポートフォリオサイトです。
+相川祥太の制作物、スキル、プロフィールをまとめたポートフォリオサイトです。
 
-## 目次
-
-- [概要](#概要)
-- [インストール](#インストール)
-- [特徴](#特徴)
-- [技術](#技術)
-- [ライセンス](#ライセンス)
-- [連絡先](#連絡先)
+公開 URL: [https://portfolio.a-shota.com/](https://portfolio.a-shota.com/)
 
 ## 概要
 
-このポートフォリオは、相川が作成したWebアプリやCLIツールなどの制作物を紹介します。
+- フロントエンドは React + Vite で構成しています
+- 静的ファイルは AWS S3 に配置しています
+- 配信は CloudFront 経由で行っています
+- 独自ドメイン `portfolio.a-shota.com` は Cloudflare DNS で管理しています
 
-## インストール
+## リポジトリ構成
 
-ローカルにコピーして実行するためには、以下の手順に従ってください。
+```text
+.
+├── frontend/        # React + Vite アプリケーション
+├── infrastructure/  # Terraform による AWS インフラ定義
+├── document/        # 開発メモ
+├── compose.yml      # 開発用コンテナ起動設定
+└── Dockerfile       # 開発用イメージ定義
+```
 
-### Dockerを使用する場合
-Dockerがインストールされている必要があります。
+## ローカル開発
+
+### Docker を使う場合
 
 1. リポジトリをクローンする
    ```sh
    git clone https://github.com/AikawaShota/portfolio.git
-   ```
-2. リポジトリのディレクトリに移動する
-    ```sh
    cd portfolio
-    ```
-3. Dockerコンテナをビルドして起動する
-    ```sh
+   ```
+2. 開発サーバーを起動する
+   ```sh
    docker compose up -d
-    ```
-4. ブラウザで [http://localhost:3000/](http://localhost:3000/) にアクセスする。
+   ```
+3. ブラウザで [http://localhost:3000/](http://localhost:3000/) にアクセスする
 
-### Node.jsの環境で実行する場合
-Node.jsがインストールされている必要があります。
+### Node.js を使う場合
 
 1. リポジトリをクローンする
    ```sh
    git clone https://github.com/AikawaShota/portfolio.git
+   cd portfolio/frontend
    ```
-2. リポジトリ内のviteプロジェクトディレクトリに移動する
-    ```sh
-   cd portfolio/portfolio-vite
-    ```
-3. NPMパッケージをインストールする
-    ```sh
+2. 依存関係をインストールする
+   ```sh
    npm install
-    ```
-4. 開発サーバを起動する
-    ```sh
+   ```
+3. 開発サーバーを起動する
+   ```sh
    npm run dev
-    ```
-5. ブラウザで [http://localhost:3000/](http://localhost:3000/) にアクセスする。
+   ```
+4. ブラウザで [http://localhost:3000/](http://localhost:3000/) にアクセスする
 
-## 特徴
+## デプロイ構成
 
-ポートフォリオサイトの主な特徴を挙げます。
-- インタラクティブなUI
-- Three.jsとGSAPを使用した3Dモデルとアニメーション
-- レスポンシブデザイン
+- S3: 静的ファイル配置先
+- CloudFront: CDN 配信
+- ACM: `portfolio.a-shota.com` 用証明書
+- Cloudflare DNS: `portfolio.a-shota.com` を CloudFront に向ける CNAME を管理
 
-## 技術
-
-プロジェクトで使用した主な技術やライブラリを一覧にします。
-- React
-- Three.js
-- GSAP
-- Vite
+Terraform の定義は [`infrastructure/main.tf`](/home/shota/ghq/github.com/AikawaShota/portfolio/infrastructure/main.tf) を中心に管理しています。
 
 ## ライセンス
 
-このプロジェクトには二つのライセンスを使用しています：
+- コード: MIT License
+- コンテンツ: Creative Commons Attribution 4.0 International License
 
-- **コード**: MITライセンスの下で配布されています。
-- **コンテンツ**: Creative Commons Attribution 4.0 International Licenseの下で配布されています。
-- 詳細は `LICENSE` ファイルを参照してください。
-
-## 連絡先
-
-相川祥太 - [your-email@example.com](mailto:your-email@example.com)  
-プロジェクトリンク: [https://github.com/AikawaShota/portfolio](https://github.com/AikawaShota/portfolio)
+詳細は [LICENSE](/home/shota/ghq/github.com/AikawaShota/portfolio/LICENSE) を参照してください。
