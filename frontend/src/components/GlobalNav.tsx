@@ -7,6 +7,7 @@ interface GlobalNavProps {
     profileRef: SectionRef;
     skillRef: SectionRef;
     worksRef: SectionRef;
+    contactRef: SectionRef;
 }
 
 interface NavItem {
@@ -17,7 +18,7 @@ interface NavItem {
     children?: NavItem[];
 }
 
-export default function GlobalNav({ profileRef, skillRef, worksRef }: GlobalNavProps) {
+export default function GlobalNav({ profileRef, skillRef, worksRef, contactRef }: GlobalNavProps) {
     const [isVisible, setIsVisible] = useState(false);
     const globalNavRef = useRef<HTMLElement>(null);
 
@@ -70,6 +71,7 @@ export default function GlobalNav({ profileRef, skillRef, worksRef }: GlobalNavP
         {
             label: "Contact",
             icon: "mail",
+            onClick: () => scrollToSection(contactRef),
         },
     ];
 
