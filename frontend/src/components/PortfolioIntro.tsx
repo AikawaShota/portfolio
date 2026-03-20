@@ -1,12 +1,39 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { FontLoader, type Font } from "three/examples/jsm/loaders/FontLoader.js";
 
-export default function PortfolioIntro() {
+interface PortfolioIntroProps {
+    nextSectionRef: RefObject<HTMLElement>;
+}
+
+export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+
+    const scrollToNextSection = () => {
+        nextSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 767px)");
+        const updateIsMobile = (event: MediaQueryList | MediaQueryListEvent) => {
+            setIsMobile(event.matches);
+        };
+
+        updateIsMobile(mediaQuery);
+        mediaQuery.addEventListener("change", updateIsMobile);
+
+        return () => {
+            mediaQuery.removeEventListener("change", updateIsMobile);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            return;
+        }
+
         let camera: THREE.PerspectiveCamera | null = null;
         let scene: THREE.Scene | null = null;
         let renderer: THREE.WebGLRenderer | null = null;
@@ -143,10 +170,71 @@ export default function PortfolioIntro() {
                 container.removeChild(renderer.domElement);
             }
         };
-    }, []);
+    }, [isMobile]);
+
+    useEffect(() => {
+        if (!isMobile) {
+            return;
+        }
+
+        let hasUserInteracted = false;
+
+        const cancelAutoScroll = () => {
+            hasUserInteracted = true;
+        };
+
+        const timeoutId = window.setTimeout(() => {
+            if (hasUserInteracted || window.scrollY > 24) {
+                return;
+            }
+
+            nextSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 3500);
+
+        window.addEventListener("wheel", cancelAutoScroll, { passive: true });
+        window.addEventListener("touchstart", cancelAutoScroll, { passive: true });
+        window.addEventListener("pointerdown", cancelAutoScroll);
+        window.addEventListener("keydown", cancelAutoScroll);
+
+        return () => {
+            window.clearTimeout(timeoutId);
+            window.removeEventListener("wheel", cancelAutoScroll);
+            window.removeEventListener("touchstart", cancelAutoScroll);
+            window.removeEventListener("pointerdown", cancelAutoScroll);
+            window.removeEventListener("keydown", cancelAutoScroll);
+        };
+    }, [isMobile, nextSectionRef]);
+
+    if (isMobile) {
+        return (
+            <section className="animate-fade relative flex min-h-screen items-center bg-gray-50 pb-20 pl-6 pt-20 text-black">
+                <div className="mx-auto w-full max-w-none">
+                    <div className="mobile-intro-title mt-4">
+                        <h1 className="mobile-intro-outline mobile-intro-heading font-bold leading-tight">
+                            <span className="mobile-intro-line mobile-intro-line-1">Welcome to</span>
+                            <span className="mobile-intro-line mobile-intro-line-2">AikawaShota&apos;s</span>
+                            <span className="mobile-intro-line mobile-intro-line-3">Portfolio.</span>
+                        </h1>
+                        <h1 className="mobile-intro-fill mobile-intro-heading font-bold leading-tight">
+                            <span className="mobile-intro-line mobile-intro-line-1">Welcome to</span>
+                            <span className="mobile-intro-line mobile-intro-line-2">AikawaShota&apos;s</span>
+                            <span className="mobile-intro-line mobile-intro-line-3">Portfolio.</span>
+                        </h1>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    onClick={scrollToNextSection}
+                    className="scroll-indicator">
+                    <span className="scroll-indicator__label">Scroll</span>
+                    <span className="scroll-indicator__line" />
+                </button>
+            </section>
+        );
+    }
 
     return (
-        <section className="animate-fade h-screen cursor-grab active:cursor-grabbing">
+        <section className="animate-fade relative h-screen cursor-grab active:cursor-grabbing">
             <div ref={containerRef} />
         </section>
     );

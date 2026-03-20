@@ -12,7 +12,7 @@ function App() {
 
     return (
         <>
-            <PortfolioIntro />
+            <PortfolioIntro nextSectionRef={profileRef} />
             <GlobalNav profileRef={profileRef} skillRef={skillRef} />
             <main>
                 <Profile ref={profileRef} />

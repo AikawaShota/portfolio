@@ -5,3 +5,129 @@
 html {
     scroll-padding-top: 4.5rem;
 }
+
+.mobile-intro-title {
+    position: relative;
+    display: grid;
+    width: 100%;
+    justify-items: start;
+    text-align: left;
+}
+
+.mobile-intro-heading {
+    font-size: clamp(3.3rem, 12.8vw, 5.2rem);
+    line-height: 0.95;
+}
+
+.mobile-intro-title>* {
+    grid-area: 1 / 1;
+}
+
+.mobile-intro-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: mobile-intro-line-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.mobile-intro-line-1 {
+    animation-delay: 0.05s;
+}
+
+.mobile-intro-line-2 {
+    animation-delay: 0.6s;
+}
+
+.mobile-intro-line-3 {
+    animation-delay: 1.2s;
+}
+
+.mobile-intro-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #111111;
+    transform: scaleX(1.02);
+    transform-origin: center;
+}
+
+.mobile-intro-fill {
+    color: rgba(17, 17, 17, 0.38);
+}
+
+.mobile-intro-fill .mobile-intro-line {
+    animation-duration: 1.25s;
+    animation-delay: calc(var(--mobile-intro-delay, 0s) + 0.38s);
+}
+
+.mobile-intro-fill .mobile-intro-line-1 {
+    --mobile-intro-delay: 0.05s;
+}
+
+.mobile-intro-fill .mobile-intro-line-2 {
+    --mobile-intro-delay: 0.6s;
+}
+
+.mobile-intro-fill .mobile-intro-line-3 {
+    --mobile-intro-delay: 1.2s;
+}
+
+@keyframes mobile-intro-line-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-indicator {
+    position: absolute;
+    left: 50%;
+    bottom: 2rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transform: translateX(-50%);
+    color: rgba(17, 17, 17, 0.7);
+    background: transparent;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.scroll-indicator__label {
+    font-size: 0.75rem;
+}
+
+.scroll-indicator__line {
+    position: relative;
+    width: 1px;
+    height: 3.5rem;
+    background: rgba(17, 17, 17, 0.18);
+    overflow: hidden;
+}
+
+.scroll-indicator__line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.9);
+    transform: translateY(-100%);
+    animation: scroll-indicator-flow 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-indicator-flow {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    60% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
