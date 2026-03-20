@@ -15,7 +15,7 @@ html {
 }
 
 .mobile-intro-heading {
-    font-size: clamp(3.3rem, 12.8vw, 5.2rem);
+    font-size: clamp(3.1rem, 12vw, 4.9rem);
     line-height: 0.95;
 }
 

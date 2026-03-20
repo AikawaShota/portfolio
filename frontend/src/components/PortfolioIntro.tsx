@@ -74,6 +74,8 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
                     side: THREE.DoubleSide,
                 });
 
+                scene.add(createHeartMark(matDark, matLite));
+
                 const lineSpacing = 122;
 
                 for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
@@ -198,6 +200,40 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
                     }
                 }
             }
+        }
+
+        function createHeartMark(
+            outlineMaterial: THREE.LineBasicMaterial,
+            fillMaterial: THREE.MeshBasicMaterial,
+        ) {
+            const x = 0;
+            const y = 0;
+
+            const heartShape = new THREE.Shape();
+            heartShape.moveTo(x, y + 28);
+            heartShape.bezierCurveTo(x, y + 52, x - 36, y + 52, x - 36, y + 20);
+            heartShape.bezierCurveTo(x - 36, y - 8, x - 10, y - 24, x, y - 42);
+            heartShape.bezierCurveTo(x + 10, y - 24, x + 36, y - 8, x + 36, y + 20);
+            heartShape.bezierCurveTo(x + 36, y + 52, x, y + 52, x, y + 28);
+
+            const heartGroup = new THREE.Group();
+            heartGroup.position.set(0, 0, 800);
+            heartGroup.rotation.y = Math.PI;
+
+            const heartFillGeometry = new THREE.ShapeGeometry(heartShape, 24);
+            const heartFill = new THREE.Mesh(heartFillGeometry, fillMaterial.clone());
+            heartFill.scale.setScalar(2.6);
+            heartFill.position.z = -8;
+            (heartFill.material as THREE.MeshBasicMaterial).opacity = 0.24;
+            heartGroup.add(heartFill);
+
+            const heartPoints = heartShape.getPoints(120);
+            const heartLineGeometry = new THREE.BufferGeometry().setFromPoints(heartPoints);
+            const heartOutline = new THREE.LineLoop(heartLineGeometry, outlineMaterial.clone());
+            heartOutline.scale.setScalar(2.6);
+            heartGroup.add(heartOutline);
+
+            return heartGroup;
         }
 
         function startAnimation() {
