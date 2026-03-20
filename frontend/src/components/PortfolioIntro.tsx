@@ -34,12 +34,16 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
             return;
         }
 
+        const lines = ["Welcome to", "AikawaShota's", "Portfolio."];
+        const lineGroups: THREE.Group[] = [];
         let camera: THREE.PerspectiveCamera | null = null;
         let scene: THREE.Scene | null = null;
         let renderer: THREE.WebGLRenderer | null = null;
         let controls: OrbitControls | null = null;
         let container: HTMLDivElement | null = null;
         let animationId = 0;
+        let animationStartTime = 0;
+        let isTextReady = false;
 
         init();
 
@@ -70,49 +74,61 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
                     side: THREE.DoubleSide,
                 });
 
-                const message = "Welcome to\nAikawaShota's\nPortfolio.";
-                const shapes = font.generateShapes(message, 100);
-                const geometry = new THREE.ShapeGeometry(shapes);
+                const lineSpacing = 122;
 
-                geometry.computeBoundingBox();
+                for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+                    const lineMessage = lines[lineIndex];
+                    const shapes = font.generateShapes(lineMessage, 100);
+                    const geometry = new THREE.ShapeGeometry(shapes);
 
-                const xPos = -((geometry.boundingBox?.max.x ?? 0) + (geometry.boundingBox?.min.x ?? 0)) / 2;
-                const yPos = -((geometry.boundingBox?.max.y ?? 0) + (geometry.boundingBox?.min.y ?? 0)) / 2;
+                    geometry.computeBoundingBox();
 
-                geometry.translate(xPos, yPos, 0);
+                    const xPos = -((geometry.boundingBox?.max.x ?? 0) + (geometry.boundingBox?.min.x ?? 0)) / 2;
+                    const baseY = ((lines.length - 1) * lineSpacing) / 2;
+                    const yPos = baseY - lineIndex * lineSpacing;
 
-                const text = new THREE.Mesh(geometry, matLite);
-                text.position.z = -10;
-                scene.add(text);
+                    geometry.translate(xPos, yPos, 0);
 
-                const holeShapes: THREE.Path[] = [];
+                    const lineGroup = new THREE.Group();
+                    lineGroup.position.y = 36;
 
-                for (let i = 0; i < shapes.length; i += 1) {
-                    const shape = shapes[i];
+                    const text = new THREE.Mesh(geometry, matLite.clone());
+                    text.position.z = -10;
+                    (text.material as THREE.MeshBasicMaterial).opacity = 0;
+                    lineGroup.add(text);
 
-                    if (shape.holes && shape.holes.length > 0) {
-                        for (let j = 0; j < shape.holes.length; j += 1) {
-                            holeShapes.push(shape.holes[j]);
+                    const holeShapes: THREE.Path[] = [];
+
+                    for (let i = 0; i < shapes.length; i += 1) {
+                        const shape = shapes[i];
+
+                        if (shape.holes && shape.holes.length > 0) {
+                            for (let j = 0; j < shape.holes.length; j += 1) {
+                                holeShapes.push(shape.holes[j]);
+                            }
                         }
                     }
+
+                    const allShapes = [...shapes, ...holeShapes];
+
+                    for (let i = 0; i < allShapes.length; i += 1) {
+                        const shape = allShapes[i];
+                        const points = shape.getPoints();
+                        const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+
+                        lineGeometry.translate(xPos, yPos, 0);
+
+                        const lineMesh = new THREE.Line(lineGeometry, matDark.clone());
+                        (lineMesh.material as THREE.LineBasicMaterial).opacity = 0;
+                        lineGroup.add(lineMesh);
+                    }
+
+                    lineGroups.push(lineGroup);
+                    scene.add(lineGroup);
                 }
 
-                const allShapes = [...shapes, ...holeShapes];
-
-                const lineText = new THREE.Object3D();
-
-                for (let i = 0; i < allShapes.length; i += 1) {
-                    const shape = allShapes[i];
-                    const points = shape.getPoints();
-                    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-
-                    lineGeometry.translate(xPos, yPos, 0);
-
-                    const lineMesh = new THREE.Line(lineGeometry, matDark);
-                    lineText.add(lineMesh);
-                }
-
-                scene.add(lineText);
+                isTextReady = true;
+                animationStartTime = performance.now();
                 startAnimation();
             });
 
@@ -149,7 +165,39 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
                 return;
             }
 
+            if (isTextReady) {
+                updateLineAnimations();
+            }
+
             renderer.render(scene, camera);
+        }
+
+        function updateLineAnimations() {
+            const elapsed = (performance.now() - animationStartTime) / 1000;
+
+            for (let lineIndex = 0; lineIndex < lineGroups.length; lineIndex += 1) {
+                const group = lineGroups[lineIndex];
+                const lineDelay = lineIndex * 0.45;
+                const progress = THREE.MathUtils.clamp((elapsed - lineDelay) / 0.9, 0, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+
+                group.position.y = (1 - eased) * 36;
+
+                for (let childIndex = 0; childIndex < group.children.length; childIndex += 1) {
+                    const child = group.children[childIndex];
+
+                    if (child instanceof THREE.Mesh) {
+                        const material = child.material as THREE.MeshBasicMaterial;
+                        material.opacity = 0.4 * eased;
+                    }
+
+                    if (child instanceof THREE.Line) {
+                        const material = child.material as THREE.LineBasicMaterial;
+                        material.transparent = true;
+                        material.opacity = eased;
+                    }
+                }
+            }
         }
 
         function startAnimation() {
