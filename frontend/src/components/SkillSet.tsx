@@ -129,9 +129,9 @@ const skillCategories: SkillCategory[] = [
 
 const SkillSet = forwardRef<HTMLDivElement>(function SkillSet(_props, skillRef) {
     return (
-        <section ref={skillRef} className="w-full min-h-screen bg-gray-50">
+        <section ref={skillRef} className="w-full min-h-screen bg-gray-50 py-10">
             <div className="md:w-9/12 mx-auto md:px-0 px-5">
-                <h1 className="text-5xl font-bold pt-10">Skill</h1>
+                <h1 className="text-5xl font-bold">Skill</h1>
                 {skillCategories.map((category) => (
                     <div key={category.title}>
                         <h2 className="font-bold text-3xl py-4">{category.title}</h2>

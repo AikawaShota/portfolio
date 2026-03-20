@@ -7,13 +7,13 @@ const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
                 <label className="swap swap-flip aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl md:w-96">
                     <input type="checkbox" />
                     <img
-                        src="/images/ID_photo.jpg"
+                        src="/assets/icons/me.jpg"
                         alt="AikawaShota"
                         className="swap-off h-full w-full object-cover duration-500"
                     />
                     <img
-                        src="/images/penguin.jpg"
-                        alt="AikawaShota"
+                        src="/assets/icons/penguin.jpg"
+                        alt="PenguinIcon"
                         className="swap-on h-full w-full object-cover duration-500"
                     />
                 </label>
