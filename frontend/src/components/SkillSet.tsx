@@ -13,6 +13,11 @@ interface SkillCategory {
     skills: SkillData[];
 }
 
+interface CertificationData {
+    id: string;
+    title: string;
+}
+
 const skillCategories: SkillCategory[] = [
     {
         title: "Language",
@@ -127,6 +132,13 @@ const skillCategories: SkillCategory[] = [
     },
 ];
 
+const certifications: CertificationData[] = [
+    {
+        id: "fe",
+        title: "基本情報技術者試験 合格",
+    },
+];
+
 const SkillSet = forwardRef<HTMLDivElement>(function SkillSet(_props, skillRef) {
     return (
         <section ref={skillRef} className="w-full min-h-screen bg-gray-50 py-10">
@@ -149,6 +161,17 @@ const SkillSet = forwardRef<HTMLDivElement>(function SkillSet(_props, skillRef) 
                         </div>
                     </div>
                 ))}
+                <div className="mt-12">
+                    <h2 className="font-bold text-3xl py-4">Certifications</h2>
+                    <div className="grid justify-items-center gap-5 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row">
+                        {certifications.map((certification) => (
+                            <CertificationItem
+                                key={certification.id}
+                                {...certification}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
         </section>
     )
@@ -169,6 +192,16 @@ function SkillItem({ title, rating, description, experience }: SkillData) {
             </article>
         </div>
     )
+}
+
+function CertificationItem({ title }: CertificationData) {
+    return (
+        <div className="w-full">
+            <article className="h-full rounded-box border border-base-300 bg-base-100 p-6 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-gray-400 hover:shadow-md">
+                <h3 className="font-bold text-lg">{title}</h3>
+            </article>
+        </div>
+    );
 }
 
 function RatingStar({ rating }: { rating: number }) {
