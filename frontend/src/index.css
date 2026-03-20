@@ -97,6 +97,28 @@ html {
     text-transform: uppercase;
 }
 
+.scroll-indicator-delayed {
+    opacity: 0;
+    pointer-events: none;
+    animation: scroll-indicator-reveal 0.6s ease forwards;
+    animation-delay: 7s;
+}
+
+.scroll-indicator-mobile {
+    opacity: 0;
+    pointer-events: none;
+    animation: scroll-indicator-reveal 0.6s ease forwards;
+    animation-delay: 2.9s;
+}
+
+.scroll-indicator-delayed .scroll-indicator__line::after {
+    animation-delay: 7s;
+}
+
+.scroll-indicator-mobile .scroll-indicator__line::after {
+    animation-delay: 2.9s;
+}
+
 .scroll-indicator__label {
     font-size: 0.75rem;
 }
@@ -129,5 +151,18 @@ html {
 
     100% {
         transform: translateY(100%);
+    }
+}
+
+@keyframes scroll-indicator-reveal {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
     }
 }

@@ -189,7 +189,7 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
             }
 
             nextSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-        }, 3500);
+        }, 4500);
 
         window.addEventListener("wheel", cancelAutoScroll, { passive: true });
         window.addEventListener("touchstart", cancelAutoScroll, { passive: true });
@@ -225,7 +225,7 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
                 <button
                     type="button"
                     onClick={scrollToNextSection}
-                    className="scroll-indicator">
+                    className="scroll-indicator scroll-indicator-mobile">
                     <span className="scroll-indicator__label">Scroll</span>
                     <span className="scroll-indicator__line" />
                 </button>
@@ -236,6 +236,13 @@ export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) 
     return (
         <section className="animate-fade relative h-screen cursor-grab active:cursor-grabbing">
             <div ref={containerRef} />
+            <button
+                type="button"
+                onClick={scrollToNextSection}
+                className="scroll-indicator scroll-indicator-delayed">
+                <span className="scroll-indicator__label">Scroll</span>
+                <span className="scroll-indicator__line" />
+            </button>
         </section>
     );
 }
