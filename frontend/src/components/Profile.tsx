@@ -19,13 +19,6 @@ const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
                     </p>
                     <div className="flex max-w-md flex-wrap gap-3">
                         <a
-                            href="https://mesekit.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-outline">
-                            Blog
-                        </a>
-                        <a
                             href="https://github.com/AikawaShota/"
                             target="_blank"
                             rel="noopener noreferrer"
