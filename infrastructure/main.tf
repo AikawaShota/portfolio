@@ -49,6 +49,9 @@ resource "aws_cloudfront_distribution" "site" {
     target_origin_id       = "s3-site-origin"
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
+    min_ttl                = 0
+    default_ttl            = 86400
+    max_ttl                = 31536000
 
     forwarded_values {
       query_string = false
