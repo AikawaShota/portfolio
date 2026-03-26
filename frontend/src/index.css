@@ -14,9 +14,24 @@ html {
     text-align: left;
 }
 
+.desktop-intro-title {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
+
+.desktop-intro-title>* {
+    grid-area: 1 / 1;
+}
+
 .mobile-intro-heading {
     font-size: clamp(3.1rem, 12vw, 4.9rem);
     line-height: 0.95;
+}
+
+.desktop-intro-heading {
+    font-size: clamp(4rem, 10vw, 6.8rem);
 }
 
 .mobile-intro-title>* {
@@ -51,6 +66,74 @@ html {
 
 .mobile-intro-fill {
     color: rgba(17, 17, 17, 0.38);
+}
+
+.desktop-intro-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #111111;
+    transform: scaleX(1.02);
+    transform-origin: center;
+}
+
+.desktop-intro-fill {
+    color: rgba(17, 17, 17, 0.28);
+}
+
+.desktop-intro-line {
+    display: block;
+}
+
+.intro-curtain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.intro-curtain-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: calc(50% + 10px);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.1) 28%, rgba(255, 255, 255, 0.02) 70%),
+        linear-gradient(135deg, rgba(245, 245, 245, 0.92), rgba(229, 229, 229, 0.84));
+    backdrop-filter: blur(4px);
+    transition:
+        transform 1.25s cubic-bezier(0.65, 0, 0.35, 1),
+        clip-path 1.25s cubic-bezier(0.65, 0, 0.35, 1),
+        opacity 1.35s ease;
+    will-change: transform, clip-path, opacity;
+}
+
+.intro-curtain-panel-left {
+    left: -5px;
+    transform-origin: left center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.1) 28%, rgba(255, 255, 255, 0.02) 70%),
+        linear-gradient(135deg, rgba(245, 245, 245, 0.92), rgba(229, 229, 229, 0.84));
+}
+
+.intro-curtain-panel-right {
+    right: -5px;
+    transform-origin: right center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.1) 28%, rgba(255, 255, 255, 0.02) 70%),
+        linear-gradient(225deg, rgba(245, 245, 245, 0.92), rgba(229, 229, 229, 0.84));
+}
+
+.intro-curtain-open .intro-curtain-panel-left {
+    transform: translateX(-100%);
+    clip-path: polygon(0 0, 100% 0, 42% 100%, 0 100%);
+    opacity: 0;
+}
+
+.intro-curtain-open .intro-curtain-panel-right {
+    transform: translateX(100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 58% 100%);
+    opacity: 0;
 }
 
 .mobile-intro-fill .mobile-intro-line {
