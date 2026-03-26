@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import OptimizedImage from "./OptimizedImage";
 
 const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
     return (
@@ -6,15 +7,17 @@ const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
             <div className="hero-content flex-col gap-10 lg:flex-row">
                 <label className="swap swap-flip aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl md:w-96">
                     <input type="checkbox" />
-                    <img
+                    <OptimizedImage
                         src="/assets/icons/me.jpg"
                         alt="AikawaShota"
-                        className="swap-off h-full w-full object-cover duration-500"
+                        pictureClassName="swap-off h-full w-full"
+                        className="h-full w-full object-cover duration-500"
                     />
-                    <img
+                    <OptimizedImage
                         src="/assets/icons/penguin.jpg"
                         alt="PenguinIcon"
-                        className="swap-on h-full w-full object-cover duration-500"
+                        pictureClassName="swap-on h-full w-full"
+                        className="h-full w-full object-cover duration-500"
                     />
                 </label>
 

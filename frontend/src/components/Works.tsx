@@ -1,4 +1,5 @@
 import { forwardRef, lazy, Suspense, useState } from "react";
+import OptimizedImage from "./OptimizedImage";
 
 export interface WorkItem {
     id: string;
@@ -78,10 +79,12 @@ const Works = forwardRef<HTMLDivElement>(function Works(_props, ref) {
                             className="group flex h-full flex-col overflow-hidden rounded-box border border-base-300 bg-base-100 text-left shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-neutral hover:bg-neutral hover:text-white hover:shadow-md">
                             <div className="flex-1">
                                 <div className="aspect-[16/10] overflow-hidden border-b border-base-300 bg-gray-100 transition group-hover:border-neutral-content/20">
-                                    <img
+                                    <OptimizedImage
                                         src={work.imageSrc}
                                         alt={work.title}
+                                        pictureClassName="block h-full w-full"
                                         className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                                        sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
                                     />
                                 </div>
                                 <div className="p-6">

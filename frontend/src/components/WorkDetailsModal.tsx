@@ -1,4 +1,5 @@
 import type { WorkItem } from "./Works";
+import OptimizedImage from "./OptimizedImage";
 
 interface WorkDetailsModalProps {
     work: WorkItem;
@@ -25,20 +26,24 @@ export default function WorkDetailsModal({ work, onClose }: WorkDetailsModalProp
                     <div className="mt-8 grid flex-1 gap-8 md:grid-cols-[1.2fr_1fr]">
                         <div className="space-y-4">
                             <div className="self-start overflow-hidden rounded-box border border-base-300 bg-white">
-                                <img
+                                <OptimizedImage
                                     src={work.modalImageSrc ?? work.imageSrc}
                                     alt={work.title}
+                                    pictureClassName="block"
                                     className="block h-auto w-full object-contain"
+                                    sizes="(min-width: 768px) 60vw, 100vw"
                                 />
                             </div>
                             {work.modalOnlyImages?.map((image) => (
                                 <div
                                     key={image.src}
                                     className="self-start overflow-hidden rounded-box border border-base-300 bg-white">
-                                    <img
+                                    <OptimizedImage
                                         src={image.src}
                                         alt={image.alt}
+                                        pictureClassName="block"
                                         className="block h-auto w-full object-contain"
+                                        sizes="(min-width: 768px) 60vw, 100vw"
                                     />
                                 </div>
                             ))}
