@@ -9,7 +9,7 @@ interface PortfolioIntroProps {
 
 export default function PortfolioIntro({ nextSectionRef }: PortfolioIntroProps) {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+    const [isMobile, setIsMobile] = useState(false);
 
     const scrollToNextSection = () => {
         nextSectionRef.current?.scrollIntoView({ behavior: "smooth" });
