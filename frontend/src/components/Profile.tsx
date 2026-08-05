@@ -41,7 +41,7 @@ const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
                         </p>
 
                         <p className="mt-4 leading-8 text-gray-700">
-                            趣味は将棋・麻雀そしてサイクリング。読みが外れたら運と戦略で乗り切り、頭を空っぽにしたくなったら自転車でひたすら遠くまで走ります。
+                            趣味は将棋・麻雀、そしてサイクリング。読みが外れたら運と戦略で乗り切り、頭を空っぽにしたくなったら自転車でひたすら遠くまで走ります。
                         </p>
                     </div>
                     <div className="mt-5 flex max-w-md flex-wrap gap-3">
