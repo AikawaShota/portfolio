@@ -23,14 +23,28 @@ const Profile = forwardRef<HTMLDivElement>(function Profile(_props, ref) {
 
                 <div className="max-w-lg">
                     <h1 className="text-5xl font-bold">Profile</h1>
-                    <div className="py-6">
-                        <p className="leading-loose">
-                            Webアプリケーションの開発をしています。<br></br>
-                            フロントエンド・バックエンド・インフラなど技術の幅を持ったエンジニアを目指しています。<br></br>
-                            <span className="mt-2 block">趣味は将棋と麻雀。読みが外れることもありますが運と戦略で何とかしています。</span>
+
+                    <div className="mt-8">
+                        <p className="text-2xl font-bold">
+                            相川祥太
+                            <span className="ml-3 text-base font-normal text-gray-500">
+                                AikawaShota
+                            </span>
+                        </p>
+
+                        <p className="mt-2 text-lg font-medium text-primary">
+                            Web Developer / Engineer
+                        </p>
+
+                        <p className="mt-4 leading-8 text-gray-700">
+                            自社サービスのWebアプリケーションを中心に設計・開発・運用まで幅広く携わっています。
+                        </p>
+
+                        <p className="mt-4 leading-8 text-gray-700">
+                            趣味は将棋・麻雀そしてサイクリング。読みが外れたら運と戦略で乗り切り、頭を空っぽにしたくなったら自転車でひたすら遠くまで走ります。
                         </p>
                     </div>
-                    <div className="flex max-w-md flex-wrap gap-3">
+                    <div className="mt-5 flex max-w-md flex-wrap gap-3">
                         <a
                             href="https://github.com/AikawaShota/"
                             target="_blank"
