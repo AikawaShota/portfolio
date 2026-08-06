@@ -20,15 +20,15 @@ docker compose up -d
 
 ```sh
 cd frontend
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ## 本番ビルド
 
 ```sh
 cd frontend
-npm run build
+pnpm run build
 ```
 
 ビルド成果物は `frontend/dist` に出力されます。`dist` は Git 管理しません。
@@ -38,7 +38,7 @@ npm run build
 1. フロントエンドをビルドする
    ```sh
    cd frontend
-   npm run build
+   pnpm run build
    ```
 2. S3 に同期する
    ```sh

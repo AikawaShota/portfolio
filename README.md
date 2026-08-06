@@ -46,11 +46,11 @@
    ```
 2. 依存関係をインストールする
    ```sh
-   npm install
+   pnpm install
    ```
 3. 開発サーバーを起動する
    ```sh
-   npm run dev
+   pnpm run dev
    ```
 4. ブラウザで [http://localhost:3000/](http://localhost:3000/) にアクセスする
 
